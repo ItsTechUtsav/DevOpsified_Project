@@ -14,8 +14,10 @@ spec:
       labels:
         app: nodeapp
     spec:
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
       - name: nodeapp
-        image: node:22-alpine
+        image: 596953737188.dkr.ecr.ap-south-1.amazonaws.com/dev/devopsified
         ports:
         - containerPort: 3000
