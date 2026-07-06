@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: ap-south-1
-  ECR_REPOSITORY: dev/devopsified
+  ECR_REPOSITORY: devopsified
   ECR_REGISTRY: 596953737188.dkr.ecr.ap-south-1.amazonaws.com
   IMAGE_TAG: latest
 
