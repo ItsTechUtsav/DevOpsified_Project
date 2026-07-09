@@ -1,4 +1,4 @@
-name: Build and Push Docker Image to Amazon ECR
+name: Build, Push & Deploy to Kubernetes
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   IMAGE_TAG: latest
 
 jobs:
-  build-and-push:
+  build-push-deploy:
     runs-on: ubuntu-latest
 
     permissions:
@@ -30,7 +30,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
-        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker Image
@@ -45,13 +44,17 @@ jobs:
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      - name: Deploy to Kubernetes
+      - name: Deploy to EC2 Kubernetes Cluster
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            set -e
+
+            cd ~/DevOpsified_Project_1
+
             PASSWORD=$(aws ecr get-login-password --region ap-south-1)
 
             kubectl delete secret ecr-secret --ignore-not-found
@@ -61,6 +64,12 @@ jobs:
               --docker-username=AWS \
               --docker-password="$PASSWORD"
 
-            cd ~/DevOpsified_Project_1/nodeapp
+            cd nodeapp
 
-            helm upgrade --install myapp .
+            helm upgrade --install myapp . --wait
+
+            kubectl rollout status deployment/myapp-deployment
+
+            kubectl get pods
+
+            kubectl get svc
