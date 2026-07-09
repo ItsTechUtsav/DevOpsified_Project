@@ -44,3 +44,23 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Deploy to Kubernetes
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            PASSWORD=$(aws ecr get-login-password --region ap-south-1)
+
+            kubectl delete secret ecr-secret --ignore-not-found
+
+            kubectl create secret docker-registry ecr-secret \
+              --docker-server=596953737188.dkr.ecr.ap-south-1.amazonaws.com \
+              --docker-username=AWS \
+              --docker-password="$PASSWORD"
+
+            cd ~/DevOpsified_Project_1/nodeapp
+
+            helm upgrade --install myapp .
