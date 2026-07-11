@@ -126,25 +126,25 @@ Grafana Dashboard
 
 ## GitHub Actions Pipeline
 
-![GitHub Actions Workflow](Workflow.png)
+![GitHub Actions Workflow](screenshots/Workflow.png)
 
 ---
 
 ## Kubernetes Deployment
 
-![Kubernetes Deployment](KubernetesDeployment.png)
+![Kubernetes Deployment](screenshots/KubernetesDeployment.png)
 
 ---
 
-## Application Running  
+## Application Running
 
-![Application Running](application.png)
+![Application Running](screenshots/application.png)
 
 ---
 
 ## Grafana Dashboard
 
-![Grafana Dashboard](DashBoard.png)
+![Grafana Dashboard](screenshots/DashBoard.png)
 
 ---
 
