@@ -130,13 +130,13 @@ Grafana Dashboard
 
 ---
 
-## Kubernetes Pods
+## Kubernetes Deployment
 
-![Kubernetes Deployment](Kubernetes Deployment.png)
+![Kubernetes Deployment](KubernetesDeployment.png)
 
 ---
 
-## Application Running`  
+## Application Running  
 
 ![Application Running](application.png)
 
