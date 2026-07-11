@@ -126,25 +126,25 @@ Grafana Dashboard
 
 ## GitHub Actions Pipeline
 
-> Add screenshot here
+![GitHub Actions Workflow](Workflow.png)
 
 ---
 
 ## Kubernetes Pods
 
-> Add screenshot here
+![Kubernetes Deployment](Kubernetes Deployment.png)
+
+---
+
+## Application Running`  
+
+![Application Running](application.png)
 
 ---
 
 ## Grafana Dashboard
 
-> Add screenshot here
-
----
-
-## Application Running
-
-> Add screenshot here
+![Grafana Dashboard](DashBoard.png)
 
 ---
 
